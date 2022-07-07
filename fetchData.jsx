@@ -43,7 +43,6 @@ return (
     useEffect(() => {
       let didCancel = false;
       const fetchData = async () => {
-        // Part 1, step 1 code goes here
         dispatch({ type: "FETCH_INIT" });
         try {
           const result = await axios(url);
@@ -89,15 +88,14 @@ return (
         throw new Error();
     }
   };
-  
-  // App that gets data from Hacker News url
+
   function App() {
     const { Fragment, useState, useEffect, useReducer } = React;
     const [query, setQuery] = useState('MIT');
     const [currentPage, setCurrentPage] = useState(1);
     const pageSize = 10;
     const [{ data, isLoading, isError }, doFetch] = useDataApi(
-      'https://hn.algolia.com/api/v1/search?query=MIT',
+      'https://hn.algolia.com/api/v1/search?query=gaming',
       {
         hits: [],
       }
@@ -115,10 +113,9 @@ return (
         {isLoading ? (
           <div>Loading ...</div>
         ) : (
-          // Part 1, step 2 code goes here
-          <ul class="list-group">
+          <ul className="list-group">
             {page.map((item) => (
-              <li class="list-group-item" key={item.objectID}>
+              <li className="list-group-item" key={item.objectID}>
                 <a href={item.url}>{item.title}</a>
               </li>
             ))}
